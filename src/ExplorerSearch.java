@@ -47,4 +47,11 @@ public class ExplorerSearch {
         }
         throw new IllegalArgumentException("Explorer Lost. Send Help!");
     }
+
+    public static List<int[]> availablePath(int[][] island, int[] explorerLocation){
+        List<int[]> path = new ArrayList<>();
+
+        
+        return path;
+    }
 }
