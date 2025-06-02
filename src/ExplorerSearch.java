@@ -45,6 +45,6 @@ public class ExplorerSearch {
                 }
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Explorer Lost. Send Help!");
     }
 }
