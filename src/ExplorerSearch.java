@@ -32,6 +32,19 @@ public class ExplorerSearch {
         // Implement your method here!
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
+
+
         return -1;
+    }
+
+    public static int[] findExplorer(int[][] island){
+        for(int r = 0; r < island.length; r++){
+            for(int c = 0; c < island[r].length; c++){
+                if(island[r][c] == 0){
+                    return new int[]{r,c};
+                }
+            }
+        }
+        throw new IllegalArgumentException();
     }
 }
