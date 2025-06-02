@@ -67,7 +67,7 @@ public class ExplorerSearchTest {
         assertArrayEquals(expected, ExplorerSearch.findExplorer(island));
     }
 
-        @Test
+    @Test
     public void testFindExplorer_noExplorer() {
         int[][] island = {
             {1,1,1,3,1,1},
@@ -81,5 +81,23 @@ public class ExplorerSearchTest {
         });
         assertEquals("Explorer Lost. Send Help!", exception.getMessage());
     }
+
+    // availablePath Method Testing
+    @Test
+    public void testAvailablePath_allDirections(){
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,1,1,3,3},
+            {3,1,0,1,3,1},
+            {1,1,1,2,1,1},
+        };
+        int[] location = {3, 2};
+        List<int[]> path = ExplorerSearch.availablePath(island, location);
+
+        assertEquals(4, path.size);
+
+    }
+
 
 }
