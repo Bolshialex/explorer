@@ -74,7 +74,7 @@ public class ExplorerSearch {
         newC = col;
 
         if(newR < island.length && island[newR][newC] == 1){
-            path.add(new int[]{newR, newC})
+            path.add(new int[]{newR, newC});
         }
 
         // check left

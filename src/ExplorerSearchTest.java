@@ -1,4 +1,10 @@
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.Test;
 
 public class ExplorerSearchTest {
@@ -94,10 +100,100 @@ public class ExplorerSearchTest {
         };
         int[] location = {3, 2};
         List<int[]> path = ExplorerSearch.availablePath(island, location);
+        Set<String> pathSet = new HashSet<>();
 
-        assertEquals(4, path.size);
+        for (int[] pair : path) {
+            pathSet.add(Arrays.toString(pair));
+        }
+        assertEquals(4, path.size());
+        assertTrue(pathSet.contains("[2, 2]"));
+        assertTrue(pathSet.contains("[3, 1]"));
+        assertTrue(pathSet.contains("[3, 3]"));
+        assertTrue(pathSet.contains("[4, 2]"));
 
     }
 
+    @Test
+    public void testAvailablePath_onePathLeft(){
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,2,1,3,3},
+            {3,1,0,2,3,1},
+            {1,1,3,2,1,1},
+        };
+        int[] location = {3, 2};
+        List<int[]> path = ExplorerSearch.availablePath(island, location);
+        Set<String> pathSet = new HashSet<>();
+
+        for (int[] pair : path) {
+            pathSet.add(Arrays.toString(pair));
+        }
+        assertEquals(1, path.size());
+        assertTrue(pathSet.contains("[3, 1]"));
+    }
+
+    @Test
+    public void testAvailablePath_onePathDown(){
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,2,1,3,3},
+            {3,2,0,2,3,1},
+            {1,1,1,2,1,1},
+        };
+        int[] location = {3, 2};
+        List<int[]> path = ExplorerSearch.availablePath(island, location);
+        Set<String> pathSet = new HashSet<>();
+
+        for (int[] pair : path) {
+            pathSet.add(Arrays.toString(pair));
+        }
+        assertEquals(1, path.size());
+        assertTrue(pathSet.contains("[4, 2]"));
+    }
+        
+    
+    @Test
+    public void testAvailablePath_outOfBounds(){
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,2,1,3,3},
+            {3,1,1,2,3,1},
+            {1,1,3,2,1,0},
+        };
+        int[] location = {4, 5};
+        List<int[]> path = ExplorerSearch.availablePath(island, location);
+        Set<String> pathSet = new HashSet<>();
+
+        for (int[] pair : path) {
+            pathSet.add(Arrays.toString(pair));
+        }
+        assertEquals(2, path.size());
+        assertTrue(pathSet.contains("[3, 5]"));
+        assertTrue(pathSet.contains("[4, 4]"));
+    }
+
+
+        @Test
+    public void testAvailablePath_noPath(){
+        int[][] island = {
+            {1,1,1,3,1,1},
+            {3,2,3,1,3,1},
+            {1,1,2,1,3,3},
+            {3,3,0,2,3,1},
+            {1,1,3,2,1,1},
+        };
+        int[] location = {3, 2};
+        List<int[]> path = ExplorerSearch.availablePath(island, location);
+        Set<String> pathSet = new HashSet<>();
+
+        for (int[] pair : path) {
+            pathSet.add(Arrays.toString(pair));
+        }
+        assertEquals(0, path.size());
+        assertTrue(pathSet.isEmpty());
+    }
 
 }
