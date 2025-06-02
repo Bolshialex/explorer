@@ -69,6 +69,22 @@ public class ExplorerSearch {
             path.add(new int[]{newR, newC});
         }
 
+        // check down
+        newR = row + 1;
+        newC = col;
+
+        if(newR < island.length && island[newR][newC] == 1){
+            path.add(new int[]{newR, newC})
+        }
+
+        // check left
+        newR = row;
+        newC = col - 1;
+
+        if(newC >= 0 && island[newR][newC] == 1){
+            path.add(new int[]{newR, newC});
+        }
+
         return path;
     }
 }
