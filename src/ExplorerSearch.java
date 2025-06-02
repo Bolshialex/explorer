@@ -50,8 +50,25 @@ public class ExplorerSearch {
 
     public static List<int[]> availablePath(int[][] island, int[] explorerLocation){
         List<int[]> path = new ArrayList<>();
+        int row = explorerLocation[0];
+        int col = explorerLocation[1];
 
-        
+        // check up
+        int newR = row - 1;
+        int newC = col;
+
+        if(newR >= 0 && island[newR][newC] == 1){
+            path.add(new int[]{newR, newC});
+        }
+
+        // check right
+        newR = row;
+        newC = col + 1;
+
+        if(newC < island[newR].length && island[newR][newC] == 1){
+            path.add(new int[]{newR, newC});
+        }
+
         return path;
     }
 }
