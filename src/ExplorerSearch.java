@@ -39,21 +39,22 @@ public class ExplorerSearch {
     }
 
     public static int reachableArea(int[][] island, int[] explorerLocation, boolean[][] visited){
+        int count = 0;
         int curR = explorerLocation[0];
         int curC = explorerLocation[1];
 
-        if(visited[curR][curC]) return 0;
-        if(island[curR][curC] > 1) return 0;
+        if(visited[curR][curC] || island[curR][curC] > 1) return 0;
 
         visited[curR][curC] = true;
+        count++;
 
         List<int[]> paths = availablePath(island, explorerLocation);
 
         for (int[] path : paths) {
-            return reachableArea(island, path, visited) + 1;
+            count += reachableArea(island, path, visited);
         }
 
-        return 1;
+        return count;
     }
 
     public static int[] findExplorer(int[][] island){
