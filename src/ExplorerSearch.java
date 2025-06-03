@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ExplorerSearch {
 
@@ -32,9 +33,27 @@ public class ExplorerSearch {
         // Implement your method here!
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
+        int[] start = findExplorer(island);
+        boolean[][] visited = new boolean[island.length][island[0].length];
+        return reachableArea(island, start, visited);
+    }
 
+    public static int reachableArea(int[][] island, int[] explorerLocation, boolean[][] visited){
+        int curR = explorerLocation[0];
+        int curC = explorerLocation[1];
 
-        return -1;
+        if(visited[curR][curC]) return 0;
+        if(island[curR][curC] > 1) return 0;
+
+        visited[curR][curC] = true;
+
+        List<int[]> paths = availablePath(island, explorerLocation);
+
+        for (int[] path : paths) {
+            return reachableArea(island, path, visited) + 1;
+        }
+
+        return 1;
     }
 
     public static int[] findExplorer(int[][] island){
